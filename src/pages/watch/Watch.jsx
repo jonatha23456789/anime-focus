@@ -465,6 +465,24 @@ export default function Watch() {
               >
                 View detail
               </Link>
+              <div className="mt-8 bg-[#11101A] rounded-lg p-4">
+                <p className="text-center mb-4">please donate to help the website to grow 🙏🥺?</p>
+                <div className="grid grid-cols-2 gap-2">
+                  <a href="https://ko-fi.com/animefocus51327" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-[#201F23] hover:bg-[#2a292f] rounded-lg p-3 cursor-pointer" >
+                    <i className="fas fa-donate" style={{color:'#08c'}}></i>
+                    <span>Donate</span>
+                  </a>
+                  <a href="https://discord.gg/kKnrGVqkr7" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-[#201F23] hover:bg-[#2a292f] rounded-lg p-3 cursor-pointer" >
+                    <i className="fab fa-discord" style={{color:'#6f85d5'}}></i>
+                    <span>Join Discord</span>
+                  </a>
+                  <div className="col-span-2 mt-4">
+                    <a href="https://ko-fi.com/animefocus51327" target="_blank" rel="noopener noreferrer" >
+                      <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=naoussisuzz&button_colour=ba279d&font_colour=ffffff&font_family=Cookie&outline_colour=ffffff&coffee_colour=FFDD00" alt="Buy Me A Coffee" className="w-full" />
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

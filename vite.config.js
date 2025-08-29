@@ -12,6 +12,6 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: 5173,
-    allowedHosts: 'all'
+    allowedHosts: 'b6d137b1-9cd2-4624-919e-70f5b340bfa5-00-26k383t6oe74d.spock.replit.dev'
   },
 })

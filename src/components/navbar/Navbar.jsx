@@ -200,40 +200,81 @@ function Navbar() {
             </div>
             
             {showStats && (
-              <div className="absolute top-full right-0 mt-2 w-64 bg-[#2D2B44] border border-[#404040] rounded-lg shadow-lg p-4 z-[1000001]">
-                <h3 className="text-[#ffbade] font-bold text-lg mb-3">Website Statistics</h3>
+              <div className="absolute top-full right-0 mt-2 w-72 bg-gradient-to-br from-[#2D2B44] via-[#333051] to-[#2D2B44] border border-[#ffbade]/20 rounded-xl shadow-2xl p-5 z-[1000001] backdrop-blur-md">
+                {/* Decorative header with icon */}
+                <div className="flex items-center justify-center mb-4">
+                  <div className="bg-gradient-to-r from-[#ffbade] to-[#ff9cc7] p-2 rounded-full mr-3">
+                    <FontAwesomeIcon icon={faBell} className="text-black text-sm" />
+                  </div>
+                  <h3 className="text-[#ffbade] font-bold text-lg bg-gradient-to-r from-[#ffbade] to-[#ff9cc7] bg-clip-text text-transparent">
+                    📊 Website Statistics
+                  </h3>
+                </div>
                 
+                {/* Animated stats cards */}
                 <div className="space-y-3 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-gray-300">Uptime:</span>
-                    <span className="text-white">{stats.uptime.days}d {stats.uptime.hours}h</span>
+                  <div className="bg-[#3a3757]/50 rounded-lg p-3 border border-[#ffbade]/10 hover:border-[#ffbade]/30 transition-all duration-300 hover:transform hover:scale-105">
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-300 flex items-center">
+                        ⏰ Uptime:
+                      </span>
+                      <span className="text-[#ffbade] font-semibold">{stats.uptime.days}d {stats.uptime.hours}h</span>
+                    </div>
                   </div>
                   
-                  <div className="flex justify-between">
-                    <span className="text-gray-300">Date:</span>
-                    <span className="text-white">{new Date().toLocaleDateString()}</span>
+                  <div className="bg-[#3a3757]/50 rounded-lg p-3 border border-[#ffbade]/10 hover:border-[#ffbade]/30 transition-all duration-300 hover:transform hover:scale-105">
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-300 flex items-center">
+                        📅 Date:
+                      </span>
+                      <span className="text-white font-semibold">{new Date().toLocaleDateString()}</span>
+                    </div>
                   </div>
                   
-                  <div className="flex justify-between">
-                    <span className="text-gray-300">Year:</span>
-                    <span className="text-white">{new Date().getFullYear()}</span>
+                  <div className="bg-[#3a3757]/50 rounded-lg p-3 border border-[#ffbade]/10 hover:border-[#ffbade]/30 transition-all duration-300 hover:transform hover:scale-105">
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-300 flex items-center">
+                        🗓️ Year:
+                      </span>
+                      <span className="text-white font-semibold">{new Date().getFullYear()}</span>
+                    </div>
                   </div>
                   
-                  <div className="flex justify-between">
-                    <span className="text-gray-300">Ping:</span>
-                    <span className="text-white">{stats.ping}ms</span>
+                  <div className="bg-[#3a3757]/50 rounded-lg p-3 border border-[#ffbade]/10 hover:border-[#ffbade]/30 transition-all duration-300 hover:transform hover:scale-105">
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-300 flex items-center">
+                        🚀 Ping:
+                      </span>
+                      <span className={`font-semibold ${stats.ping < 100 ? 'text-green-400' : stats.ping < 300 ? 'text-yellow-400' : 'text-red-400'}`}>
+                        {stats.ping}ms
+                      </span>
+                    </div>
                   </div>
                   
-                  <div className="flex justify-between">
-                    <span className="text-gray-300">Daily Visitors:</span>
-                    <span className="text-white">{stats.dailyVisitors.toLocaleString()}</span>
+                  <div className="bg-[#3a3757]/50 rounded-lg p-3 border border-[#ffbade]/10 hover:border-[#ffbade]/30 transition-all duration-300 hover:transform hover:scale-105">
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-300 flex items-center">
+                        👥 Daily Visitors:
+                      </span>
+                      <span className="text-[#ffbade] font-semibold">{stats.dailyVisitors.toLocaleString()}</span>
+                    </div>
                   </div>
                 </div>
                 
-                <div className="mt-3 pt-3 border-t border-[#404040]">
-                  <p className="text-xs text-gray-400 text-center">
-                    Server Status: <span className="text-green-400">Online</span>
-                  </p>
+                {/* Decorative footer with pulsing status */}
+                <div className="mt-4 pt-4 border-t border-[#ffbade]/20">
+                  <div className="flex items-center justify-center space-x-2">
+                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                    <p className="text-xs text-gray-400 text-center">
+                      Server Status: <span className="text-green-400 font-semibold">🟢 Online</span>
+                    </p>
+                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  </div>
+                  
+                  {/* Decorative sparkles */}
+                  <div className="text-center mt-2">
+                    <span className="text-[#ffbade]/50 text-xs">✨ ⭐ ✨</span>
+                  </div>
                 </div>
               </div>
             )}

@@ -167,9 +167,65 @@ export default function Player({
       canvas.width = video.videoWidth;
       canvas.height = video.videoHeight;
       
+      // Draw the video frame
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
       
+      // Check if subtitles are visible and get subtitle text
+      const subtitleElement = art.template.$subtitle;
+      if (art.subtitle.show && subtitleElement && subtitleElement.textContent.trim()) {
+        const subtitleText = subtitleElement.textContent.trim();
+        
+        // Calculate font size relative to video dimensions
+        const baseFontSize = Math.max(canvas.width * 0.025, 20);
+        
+        // Set up text style
+        ctx.font = `bold ${baseFontSize}px Arial, sans-serif`;
+        ctx.fillStyle = '#FFFFFF';
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth = Math.max(baseFontSize * 0.1, 2);
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'bottom';
+        
+        // Split text into lines if it's too long
+        const maxWidth = canvas.width * 0.9;
+        const words = subtitleText.split(' ');
+        const lines = [];
+        let currentLine = '';
+        
+        for (const word of words) {
+          const testLine = currentLine + (currentLine ? ' ' : '') + word;
+          const metrics = ctx.measureText(testLine);
+          
+          if (metrics.width > maxWidth && currentLine) {
+            lines.push(currentLine);
+            currentLine = word;
+          } else {
+            currentLine = testLine;
+          }
+        }
+        if (currentLine) lines.push(currentLine);
+        
+        // Draw subtitle text
+        const lineHeight = baseFontSize * 1.2;
+        const startY = canvas.height - (lines.length * lineHeight) - 40;
+        
+        lines.forEach((line, index) => {
+          const y = startY + (index * lineHeight);
+          const x = canvas.width / 2;
+          
+          // Draw text stroke (outline)
+          ctx.strokeText(line, x, y);
+          // Draw text fill
+          ctx.fillText(line, x, y);
+        });
+      }
+      
       canvas.toBlob((blob) => {
+        if (!blob) {
+          art.notice.show = 'Screenshot failed to create blob!';
+          return;
+        }
+        
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
@@ -179,7 +235,7 @@ export default function Player({
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
         
-        art.notice.show = 'Screenshot saved!';
+        art.notice.show = 'Screenshot saved with subtitles!';
       }, 'image/png');
     } catch (error) {
       console.error('Screenshot failed:', error);

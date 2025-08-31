@@ -19,6 +19,7 @@ import {
   pipIcon,
   playIcon,
   playIconLg,
+  screenshotIcon,
   settingsIcon,
   volumeIcon,
 } from "./PlayerIcons";
@@ -155,6 +156,35 @@ export default function Player({
       chapters.push({ start: outro.start, end: outro.end, title: "outro" });
     }
     return chapters;
+  };
+
+  const takeScreenshot = (art) => {
+    try {
+      const video = art.video;
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      
+      canvas.toBlob((blob) => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${animeInfo?.title || 'anime'}_episode_${episodeNum || episodeId}_screenshot_${new Date().getTime()}.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        
+        art.notice.show = 'Screenshot saved!';
+      }, 'image/png');
+    } catch (error) {
+      console.error('Screenshot failed:', error);
+      art.notice.show = 'Screenshot failed. This may be due to CORS restrictions.';
+    }
   };
 
   const handleKeydown = (event, art) => {
@@ -372,6 +402,14 @@ export default function Player({
           tooltip: "Forward 10s",
           click: () => {
             art.currentTime = Math.min(art.currentTime + 10, art.duration);
+          },
+        },
+        {
+          html: screenshotIcon,
+          position: "right",
+          tooltip: "Take Screenshot",
+          click: () => {
+            takeScreenshot(art);
           },
         },
       ],

@@ -72,6 +72,10 @@ const fullScreenOnIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2
 
 const fullScreenOffIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240"width="24" height="24" style="margin-bottom: 5px; vertical-align: middle;"><path d="M109.2,134.9l-8.4,50.1c-0.4,2.7-2.4,3.3-4.4,1.4L82,172l-27.9,27.9l-14.2-14.2l27.9-27.9l-14.4-14.4c-1.9-1.9-1.3-3.9,1.4-4.4l50.1-8.4c1.8-0.5,3.6,0.6,4.1,2.4C109.4,133.7,109.4,134.3,109.2,134.9L109.2,134.9z M172.1,82.1L200,54.2L185.8,40l-27.9,27.9l-14.4-14.4c-1.9-1.9-3.9-1.3-4.4,1.4l-8.4,50.1c-0.5,1.8,0.6,3.6,2.4,4.1c0.5,0.2,1.2,0.2,1.7,0l50.1-8.4c2.7-0.4,3.3-2.4,1.4-4.4L172.1,82.1z"/></svg>`;
 
+const screenshotIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="white">
+  <path d="M9 2V5H15V2H17V5H20C21.1 5 22 5.9 22 7V20C22 21.1 21.1 22 20 22H4C2.9 22 2 21.1 2 20V7C2 5.9 2.9 5 4 5H7V2H9ZM4 10V20H20V10H4ZM7 12H9V14H7V12ZM11 12H13V14H11V12ZM15 12H17V14H15V12Z"/>
+</svg>`;
+
 const logo = `<p style="display: flex; gap: 7px; align-items: center; background-color:#1F2020; padding:5px;padding-inline:7px; border-radius:5px">
     <b style="color: #ffbade;">Powered by</b>
     <span style="font-size: 14px;">
@@ -99,5 +103,6 @@ export {
   captionOffIcon,
   fullScreenOnIcon,
   fullScreenOffIcon,
+  screenshotIcon,
   logo,
 };
